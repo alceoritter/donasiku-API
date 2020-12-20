@@ -23,7 +23,7 @@ class NotificationController extends Controller
 
       // var_dump($fetchData);
       // die;
-      $notif_body = json_decode($request->getContent());
+      $notif_body = json_decode($request->getContent(), true);
       $order_id = $notif_body['order_id'];
       $transaksi_id = $notif_body['transaction_id'];
       $status_code = $notif_body['status_code'];
