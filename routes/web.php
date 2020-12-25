@@ -23,5 +23,5 @@ use Illuminate\Support\Facades\Route;
 //     $router->post('/test','TestPaymentController@testPayment');
 // });
 
-Route::get('/test', [TestPaymentController::class, 'testPayment']);
+// Route::get('/test', [TestPaymentController::class, 'testPayment']);
 Route::post('/notification/push', [NotificationController::class, 'post']);
