@@ -34,10 +34,7 @@ class NotificationController extends Controller
 
       $ref = 'Transaksi%20Pembayaran/' . $order_id;
 
-      $data = [
-        'status_code' => $status_code
-      ];
-      $database->getReference($ref)->update($data);
+     
 
 
       if (!$status_code) {
@@ -45,6 +42,10 @@ class NotificationController extends Controller
       } else {
         switch ($status_code) {
           case '200': // sukses
+            $data11 = [
+              'status_code' => $status_code
+            ];
+            $database->getReference($ref)->update($data11);
             // get jenis donasi
             $product_name = $database->getReference($ref)->getSnapshot()->getChild('product_name')->getValue();
 
