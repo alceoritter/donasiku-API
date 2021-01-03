@@ -72,11 +72,11 @@ class NotificationController extends Controller
               $sisa_nominal = $parse_sisa_nominal_kebutuhan - floatval($gross_amount);
 
               // jika berlebih maka simpan ke tabungan masjid
-              if ($sisa_nominal < 0.0) {
+              if ($sisa_nominal < 0) {
                 $to_positif = $sisa_nominal * -1;
                 // set sisa nominal kebutuhan menjadi 0
                 $data = [
-                  'sisa_nominal_kebutuhan' => strval($sisa_nominal)
+                  'sisa_nominal_kebutuhan' => "0"
                 ];
                 $database->getReference($ref_kebutuhan)->update($data);
 
@@ -125,10 +125,10 @@ class NotificationController extends Controller
                   $database->getReference('Dana/')->push($upload);
                 }
               } else {
-                $data = [
+                $datasisa = [
                   'sisa_nominal_kebutuhan' => strval($sisa_nominal)
                 ];
-                $database->getReference($ref_kebutuhan)->update($data);
+                $database->getReference($ref_kebutuhan)->update($datasisa);
               }
             }
             break;
