@@ -76,7 +76,7 @@ class NotificationController extends Controller
                 $to_positif = $sisa_nominal * -1;
                 // set sisa nominal kebutuhan menjadi 0
                 $data = [
-                  'sisa_nominal_kebutuhan' => "0"
+                  'sisa_nominal_kebutuhan' => strval($sisa_nominal)
                 ];
                 $database->getReference($ref_kebutuhan)->update($data);
 
