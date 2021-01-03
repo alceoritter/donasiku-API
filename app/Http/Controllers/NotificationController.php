@@ -72,7 +72,7 @@ class NotificationController extends Controller
               $sisa_nominal = $parse_sisa_nominal_kebutuhan - floatval($gross_amount);
 
               // jika berlebih maka simpan ke tabungan masjid
-              if ($sisa_nominal < 0) {
+              if ($sisa_nominal < 0.0) {
                 $to_positif = $sisa_nominal * -1;
                 // set sisa nominal kebutuhan menjadi 0
                 $data = [
