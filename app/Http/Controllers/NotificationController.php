@@ -66,7 +66,8 @@ class NotificationController extends Controller
               // get biaya kebutuhan
               $ref_kebutuhan = 'Bayar%20Kebutuhan/' . $product_name;
               $sisa_nominal_kebutuhan = $database->getReference($ref_kebutuhan)->getSnapshot()->getChild('sisa_nominal_kebutuhan')->getValue();
-              $parse_sisa_nominal_kebutuhan = floatval($sisa_nominal_kebutuhan);
+              $sisa_nominal_kebutuhan_rplc = str_replace(".","", $sisa_nominal_kebutuhan);
+              $parse_sisa_nominal_kebutuhan = floatval($sisa_nominal_kebutuhan_rplc);
 
               // mengurangi sisa nominal awal
               $sisa_nominal = $parse_sisa_nominal_kebutuhan - floatval($gross_amount);
