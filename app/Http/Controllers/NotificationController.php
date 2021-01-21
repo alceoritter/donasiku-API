@@ -49,17 +49,31 @@ class NotificationController extends Controller
             // get jenis donasi
             $product_name = $database->getReference($ref)->getSnapshot()->getChild('product_name')->getValue();
 
-            if ($product_name == 'Donasi Umum') {
-              // donasi umum
-              $ref_donasi = 'Dana/-MKcKLqNL6jEgBgnNg8p';
+            $cek_dana_program_umum = $database->getReference('Program%20Umum/'.$product_name)->getSnapshot()->getChild("dana")->getValue();
 
-              $dana_tersedia = $database->getReference($ref_donasi)->getSnapshot()->getChild('total_dana')->getValue();
+            // if ($product_name == 'Donasi Umum') {
+            //   // donasi umum
+            //   $ref_donasi = 'Dana/-MKcKLqNL6jEgBgnNg8p';
 
-              $parse_dana_tersedia = floatval($dana_tersedia);
-              $data = [
-                'total_dana' => floatval($gross_amount) + $parse_dana_tersedia
+            //   $dana_tersedia = $database->getReference($ref_donasi)->getSnapshot()->getChild('total_dana')->getValue();
+
+            //   $parse_dana_tersedia = floatval($dana_tersedia);
+            //   $data = [
+            //     'total_dana' => floatval($gross_amount) + $parse_dana_tersedia
+            //   ];
+            //   $database->getReference($ref_donasi)->update($data);
+
+            if ($cek_dana_program_umum != null) {
+              $parse_dana_pu = floatval(str_replace(".","", $cek_dana_program_umum));
+              // tambah dana ke program umum
+              $dana_final = $parse_dana_pu + floatval($gross_amount);
+
+              $v = [
+                'dana' => $dana_final
               ];
-              $database->getReference($ref_donasi)->update($data);
+              $database->getReference('Program%20Umum/'.$product_name)->update($v);
+        
+            
             } else {
 
 
