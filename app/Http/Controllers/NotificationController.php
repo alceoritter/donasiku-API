@@ -69,7 +69,7 @@ class NotificationController extends Controller
               $dana_final = $parse_dana_pu + floatval($gross_amount);
 
               $v = [
-                'dana' => $dana_final
+                'dana' => strval($dana_final)
               ];
               $database->getReference('Program%20Umum/'.$product_name)->update($v);
         
